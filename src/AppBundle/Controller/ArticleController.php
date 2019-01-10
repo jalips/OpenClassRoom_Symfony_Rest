@@ -25,8 +25,7 @@ class ArticleController extends Controller
     }
 
     /**
-     * @Route("/articles", name="article_create")
-     * @Method({"POST"})
+     * @Route("/articles", name="article_create", methods={"POST"})
      */
     public function createAction(Request $request)
     {
@@ -41,12 +40,12 @@ class ArticleController extends Controller
     }
 
     /**
-     * @Route("/articles", name="article_list")
-     * @Method({"GET"})
+     * @Route("/articles", name="article_list", methods={"GET"})
      */
     public function listAction()
     {
         $articles = $this->getDoctrine()->getRepository('AppBundle:Article')->findAll();
+
         $data = $this->get('jms_serializer')->serialize($articles, 'json');
 
         $response = new Response($data);
